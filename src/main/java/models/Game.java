@@ -25,4 +25,14 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
 
+    public void dealTwo(){
+
+//      deck.remove(deck.size()-1);
+    }
+
+
+
+
+
+
 }
