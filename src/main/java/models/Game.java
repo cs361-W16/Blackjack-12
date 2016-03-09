@@ -11,6 +11,7 @@ public class Game {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
+
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
             deck.add(new Card(i,Suit.Clubs));

@@ -8,11 +8,19 @@ import java.util.ArrayList;
 public abstract class PersonAbstract {
 
     public int money;
-
+    public int bust;
     public java.util.List<Card> hand = new ArrayList<>();
 
     public void setMoney(int add){
         this.money = money + add;
+    }
+
+    public void setBust(int x){//0 or 1 for bust
+       bust = x;
+    }
+
+    public int getBust(){
+        return this.bust;
     }
 
     public int getMoney(){
