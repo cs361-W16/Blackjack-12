@@ -34,4 +34,6 @@ public abstract class PersonAbstract {
     public Card getHand(int x){
         return hand.get(x);
     }
+
+    //hit should go here
 }
