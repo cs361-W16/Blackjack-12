@@ -5,6 +5,7 @@ package models;
  */
 public class Player extends PersonAbstract {
     public Player(){
-        this.money = 100;
+        this.money = 100; //starts with 100 money
+        this.bust = 0; //doesn't bust
     }
 }
