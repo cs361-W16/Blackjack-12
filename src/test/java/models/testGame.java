@@ -19,4 +19,16 @@ public class testGame {
         g.buildDeck();
         assertEquals(52, g.deck.size());
     }
+
+    @Test
+    public void testDealStartHand(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.dealStartHand();
+        assertEquals(g.deck.size(), 48);
+        assertNotNull(g.p.hand);
+        assertNotNull(g.d.hand);
+    }
+
 }
