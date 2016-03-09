@@ -6,10 +6,10 @@ import static org.junit.Assert.*;
 /**
  * Created by Michael on 3/8/2016.
  */
-public class playerTest {
+public class personAbstractTest {
     @Test
     public void testPlayerCreation(){
-        player p = new player();
+        PersonAbstract p = new PersonAbstract();
         assertNotNull(p);
         assertEquals(p.getMoney(),100);
     }
@@ -17,7 +17,7 @@ public class playerTest {
     @Test
     public void winBet(){
         int bet = 50;
-        player p = new player();
+        PersonAbstract p = new PersonAbstract();
         p.setMoney(bet);
         assertEquals(p.getMoney(),150);
     }
@@ -25,7 +25,7 @@ public class playerTest {
     @Test
     public void setHand(){
         Card c = new Card(10,Suit.Clubs);
-        player p = new player();
+        PersonAbstract p = new PersonAbstract();
         p.setHand(c);
         assertEquals(p.getHand(0).getSuit(),Suit.Clubs);
 
