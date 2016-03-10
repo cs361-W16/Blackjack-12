@@ -15,6 +15,18 @@ public class testCard{
     }
 
     @Test
+    public void testGetPointAce(){
+        Card c = new Card(14,Suit.Clubs);
+        assertEquals(c.getPoint(),12);
+    }
+
+    @Test
+    public void testGetPoint(){
+        Card c = new Card(12,Suit.Clubs);
+        assertEquals(c.getPoint(),10);
+    }
+
+    @Test
     public void testToString(){
         Card c = new Card(5,Suit.Clubs);
         assertEquals("5Clubs",c.toString());
