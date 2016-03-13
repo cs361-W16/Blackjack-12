@@ -14,12 +14,11 @@
 
 <body>
 
-<div id="container0">
-    <div id="dealTable">
+
         <table class="dealTable">
             <tr class="buttons">
                 <td>Dealer Hand</td>
-                <td><button id="dealButton">Deal</button></td>
+                <td><button id="deal">Deal</button></td>
                 <td>Player Money:<textarea id="userMoney" readonly="true" width></textarea></td>
                 <td>Bet:<textarea id="userBet" readonly="true" width></textarea></td>
             </tr>
@@ -42,11 +41,7 @@
                 </td>
             </tr>
         </table>
-    </div>
-</div>
 
-    <div id="container1">
-        <div id="playerTable">
             <table class="playerTable">
                 <tr class="title">
                     <td>User Hand</td>
@@ -87,17 +82,14 @@
                     <td class="columnOfCards"></td>
 
                 </tr>
-                <tr class="menuDes">
-                    <td><button id="hit" onclick="HitFunction" class="menuButton">Hit</button></td>
-                    <td><button id="stay" onclick="StayFunction" class="menuButton">Stay</button></td>
+                <tr class="buttons2">
+                    <td><button id="hit" onclick="HitFunction">Hit</button></td>
+                    <td><button id="stay" onclick="StayFunction">Stay</button></td>
                     <td><form></form><input type="number" name="bet"><br>Bet Amount:</td>
-                    <td><button id="ddown" onclick="DoubleDownFunction" class="menuButton">Double Down</button></td>
-                    <td><button id="split" onclick="SplitFunction" class="menuButton">Split</button></td>
-
+                    <td><button id="ddown" onclick="DoubleDownFunction">Double Down</button></td>
+                    <td><button id="split" onclick="SplitFunction">Split</button></td>
                 </tr>
             </table>
-        </div>
-</div>
 
 
 <script>
@@ -106,7 +98,6 @@ var game;
 function display(game) {
     console.log(game);
     $('#userMoney').html(game.p.money);
-    /* $('#userBet').html(game.p.userBet);     */
     $('.columnOfCards .cardLocation').html("");
 
     $.each(game.d.hand, function( key, val ) {
@@ -115,8 +106,6 @@ function display(game) {
     $.each(game.p.hand, function( key, val ) {
         $( '#c1 .l'+key).html(val.value + val.suit);
     });
-
-    /*split*/
 }
 
 
@@ -125,7 +114,7 @@ display(data);
 game = data;
 });
 
-$("#dealButton").click(function(){
+$("#deal").click(function(){
 $.ajax({
   type: "POST",
   url: "/dealGame",
