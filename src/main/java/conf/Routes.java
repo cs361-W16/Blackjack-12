@@ -33,6 +33,7 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/Blackjack").with(ApplicationController.class, "Blackjack");
         router.GET().route("/game").with(ApplicationController.class, "gameGet");
         router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
+		router.POST().route("/stayGame").with(ApplicationController.class, "stayPost");
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

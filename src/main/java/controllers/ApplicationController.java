@@ -22,6 +22,7 @@ import ninja.Result;
 import ninja.Results;
 
 import com.google.inject.Singleton;
+import ninja.params.PathParam;
 
 
 @Singleton
@@ -40,14 +41,28 @@ public class ApplicationController {
         g.buildDeck();
         g.shuffle();
         g.dealStartHand();
+		g.error = false;
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealStartHand();
+			g = new Game();
+			g.buildDeck();
+			g.shuffle();
+			g.dealStartHand();
+
         }
+		g.error = false;
+        return Results.json().render(g);
+    }
+	
+	public Result stayPost(Context context, Game g) {
+        if(context.getRequestPath().contains("stay")){
+            g.stay();
+        }
+		g.error = false;
         return Results.json().render(g);
     }
 
