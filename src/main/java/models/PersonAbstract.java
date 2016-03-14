@@ -56,7 +56,8 @@ public abstract class PersonAbstract {
         if(sumScore > 21)
             for(int i = 0; i<ace; i++)
             {
-                temp_score <=10;
+
+                //temp_score <=10;
                         break;
 
             }
