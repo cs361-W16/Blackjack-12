@@ -8,16 +8,18 @@ width:100px;
 height:20px;
 text-align:center;
 border:1px solid #e0e0d1;
+font-family: "Verdana", Arial, sans;
 }
 
 /*header*/
-.title{
+.footer{
 font-weight: bold;
+font-size: 7;
+font-family: "Verdana", Arial, sans;
 }
 
 .cardLocation{
 width: 100px;
-
 }
 
 button {
@@ -41,13 +43,16 @@ button {
    font-family: Helvetica, Arial, Sans-Serif;
    text-decoration: none;
    vertical-align: middle;
+   font-family: "Verdana", Arial, sans;
    }
 button:hover {
    border-top-color: #05263b;
    background: #05263b;
    color: #ccc;
+   font-family: "Verdana", Arial, sans;
    }
 button:active {
    border-top-color: #1b435e;
    background: #1b435e;
+   font-family: "Verdana", Arial, sans;
    }

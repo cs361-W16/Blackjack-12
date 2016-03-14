@@ -32,4 +32,9 @@ public class testCard{
         assertEquals("5Clubs",c.toString());
     }
 
+    @Test
+    public void testGetValue(){
+        Card c = new Card(5,Suit.Clubs);
+        assertEquals(c.getValue(),5);
+    }
 }
