@@ -39,7 +39,7 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        //g.dealStartHand();
+        g.dealStartHand();
 
         return Results.json().render(g);
     }
