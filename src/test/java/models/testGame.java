@@ -27,8 +27,8 @@ public class testGame {
         g.shuffle();
         g.dealStartHand();
         assertEquals(g.deck.size(), 48);
-        assertNotNull(g.p.hand);
-        assertNotNull(g.d.hand);
+        assertNotNull(g.p);
+        assertNotNull(g.d);
     }
 
 }

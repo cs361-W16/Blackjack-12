@@ -26,7 +26,7 @@ public class Card implements Serializable {
         }
         else {
             this.point = this.value;
-        }
+        } 
     }
 
     public Suit getSuit() {
@@ -37,9 +37,9 @@ public class Card implements Serializable {
         return value;
     }
 
-    public int getPoint(){
+     public int getPoint(){
         return point;
-    }
+    } 
 
     public String toString() {
         return this.value + this.suit.toString();

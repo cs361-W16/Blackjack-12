@@ -84,7 +84,7 @@
                 </tr>
                 <tr class="buttons2">
                     <td><button id="hit" onclick="HitFunction">Hit</button></td>
-                    <td><button id="stay" onclick="StayFunction">Stay</button></td>
+                    <td><button id="stay" >Stay</button></td>
                     <td><form></form><input type="number" name="bet"><br>Bet Amount:</td>
                     <td><button id="ddown" onclick="DoubleDownFunction">Double Down</button></td>
                     <td><button id="split" onclick="SplitFunction">Split</button></td>
@@ -100,10 +100,10 @@ function display(game) {
     $('#userMoney').html(game.p.money);
     $('.columnOfCards .cardLocation').html("");
 
-    $.each(game.d.hand, function( key, val ) {
+    $.each(game.d, function( key, val ) {
         $( '#c0 .l'+key).html(val.value + val.suit);
     });
-    $.each(game.p.hand, function( key, val ) {
+    $.each(game.p, function( key, val ) {
         $( '#c1 .l'+key).html(val.value + val.suit);
     });
 }
@@ -127,6 +127,18 @@ $.ajax({
 });
 });
 
+$("#stay").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/stayGame",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
 
 </script>
