@@ -1,3 +1,12 @@
+<head>
+    <style>
+        h1 {
+        font-weight: bold;
+        font-family: "Verdana", Arial, sans;
+        }
+    </style>
+</head>
+
 <h1>BLACKJACK</h1>
 
 <link href="/assets/css/Blackjack.css" rel="stylesheet">
@@ -5,19 +14,17 @@
 
 <body>
 
-<div id="container1">
-    <div id="dealerTable">
-        <table class="dealTable">
 
-            <tr class="title">
+        <table class="dealTable">
+            <tr class="buttons">
                 <td>Dealer Hand</td>
-                <td><button id="deal" onclick="DealFunction" class="menuDes">Deal</button></td>
-                <td>Player Money:<textarea id="userMoney" disabled="true" width></textarea></td>
-                <td>Bet:<textarea id="userBet" disabled="true" width></textarea></td>
+                <td><button id="deal">Deal</button></td>
+                <td>Player Money:<textarea id="userMoney" readonly="true" width></textarea></td>
+                <td>Bet:<textarea id="userBet" readonly="true" width></textarea></td>
             </tr>
 
             <tr>
-                <td class="columnOfCards" id="dealerHand">
+                <td class="columnOfCards" id="c0">
                     <table>
                         <tr><td class="cardLocation l0"></td></tr>
                         <tr><td class="cardLocation l1"></td></tr>
@@ -33,12 +40,8 @@
                     </table>
                 </td>
             </tr>
-
         </table>
-    </div>
 
-    <div id="container">
-        <div id="playerTable">
             <table class="playerTable">
                 <tr class="title">
                     <td>User Hand</td>
@@ -46,7 +49,7 @@
                 </tr>
 
                 <tr>
-                    <td class="columnOfCards" id="playerHand">
+                    <td class="columnOfCards" id="c1">
                         <table>
                             <tr><td class="cardLocation l0"></td></tr>
                             <tr><td class="cardLocation l1"></td></tr>
@@ -61,7 +64,7 @@
                             <tr><td class="cardLocation l10"></td></tr>
                         </table>
                     </td>
-                    <td class="columnOfCards" id="userSplit">
+                    <td class="columnOfCards" id="c2">
                         <table>
                             <tr><td class="cardLocation l0"></td></tr>
                             <tr><td class="cardLocation l1"></td></tr>
@@ -79,46 +82,39 @@
                     <td class="columnOfCards"></td>
 
                 </tr>
-                <tr class="menuDes">
-                    <td><button id="hit" onclick="HitFunction" class="menuButton">Hit</button></td>
-                    <td><button id="stay" onclick="StayFunction" class="menuButton">Stay</button></td>
+                <tr class="buttons2">
+                    <td><button id="hit" onclick="HitFunction">Hit</button></td>
+                    <td><button id="stay" onclick="StayFunction">Stay</button></td>
                     <td><form></form><input type="number" name="bet"><br>Bet Amount:</td>
-                    <td><button id="ddown" onclick="DoubleDownFunction" class="menuButton">Double Down</button></td>
-                    <td><button id="split" onclick="SplitFunction" class="menuButton">Split</button></td>
-
+                    <td><button id="ddown" onclick="DoubleDownFunction">Double Down</button></td>
+                    <td><button id="split" onclick="SplitFunction">Split</button></td>
                 </tr>
             </table>
-        </div>
 
 
 <script>
-<button id="dealButton">Deal</button>
-<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
-
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
-<BR>
-<BR>Restart Game: <button id="Restart">Restart</button>
-
-<script>
-
 var game;
 
 function display(game) {
-console.log(game);
+    console.log(game);
+    $('#userMoney').html(game.p.money);
+    $('.columnOfCards .cardLocation').html("");
+
+    $.each(game.d.hand, function( key, val ) {
+        $( '#c0 .l'+key).html(val.value + val.suit);
+    });
+    $.each(game.p.hand, function( key, val ) {
+        $( '#c1 .l'+key).html(val.value + val.suit);
+    });
+}
+
 
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
 });
 
-$("#Restart").click(function(){
-    $.getJSON("http://localhost:8080/game", function( data ) {
-    display(data);
-    game = data;
-    });
-});
-
-$("#dealButton").click(function(){
+$("#deal").click(function(){
 $.ajax({
   type: "POST",
   url: "/dealGame",
@@ -131,50 +127,6 @@ $.ajax({
 });
 });
 
-
-function removeCard(colNumber){
-$.ajax({
-type: "POST",
-url: "/removeCard/"+colNumber,
-data: JSON.stringify(game),
-success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-game = data;
-display(data);},
-contentType:"application/json; charset=utf-8",
-dataType:"json",
-});
-
-}
-
-
-$("#Remove1").click(function(){
-    removeCard(0);
-});
-$("#Remove2").click(function(){
-    removeCard(1);
-});
-$("#Remove3").click(function(){
-    removeCard(2);
-});
-$("#Remove4").click(function(){
-    removeCard(3);
-});
-
-
-$("#moveButton").click(function(){
-var colFrom = $("#from_col").val();
-var colTo = $("#to_col").val();
-$.ajax({
-  type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
-  data: JSON.stringify(game),
-  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-  contentType:"application/json; charset=utf-8",
-  dataType:"json",
-});
-});
 
 
 </script>
