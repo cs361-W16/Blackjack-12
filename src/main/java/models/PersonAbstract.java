@@ -70,7 +70,7 @@ public abstract class PersonAbstract {
     //hit should go here
     public void hit(ArrayList<Card> deck)
     {
-        addHand(deck.get(deck.size()-1));
+        deck.add(deck.get(deck.size()-1)); // addHand?
         deck.remove(deck.size()-1);
         if(TotalScore() > 21) stay();
         // if player is greater than 21, stay
